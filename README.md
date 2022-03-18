@@ -1,1 +1,3 @@
 # StockManagementSystem
+
+Frontend: React.js
