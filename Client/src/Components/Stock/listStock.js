@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
-import ListElement from "./listElementItem";
+import ListElement from "./listElementStock";
 
-const ItemList = () => {
-    const [listItems, setListItems] = useState([]);
+const StockList = () => {
+    const [listStocks, setListStocks] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/items/getAll")
+        axios.get("http://localhost:8080/stocks/getAll")
             .then(({ data }) => {
-                setListItems(data);
+                setListStocks(data);
+                console.log(listStocks)
             })
             .catch((error) => {
                 console.log(error);
@@ -17,7 +18,7 @@ const ItemList = () => {
     }, []);
 
     const DataTable = () => {
-        return listItems.map((res, i) => {
+        return listStocks.map((res, i) => {
             console.log(res)
             return <ListElement obj={res} key={i} />
         });
@@ -25,12 +26,15 @@ const ItemList = () => {
 
     return(
         <div className="table-wrapper">
+            <h2>Stock Entries</h2>
             <Table striped bordered hover>
 		        <thead>
 		            <tr>
 			            <th>Id</th>
-			            <th>Item Name</th>
-			
+			            <th>Stock Date</th>
+                        <th>Item</th>
+                        <th>Store</th>
+                        <th>Count</th>
 		            </tr>
 		        </thead>
 		        <tbody>
@@ -41,4 +45,4 @@ const ItemList = () => {
     )
 }
 
-export default ItemList;
+export default StockList;

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StoreForm from "./storeForm";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useNavigate  } from 'react-router-dom';
 
 const EditStore = (props) => {
+
+    let navigate = useNavigate ();
     const [formValues, setFormValues] = useState({
         id: "",
         location: "",
@@ -17,11 +19,13 @@ const EditStore = (props) => {
             itemObject)
         .then((res) => {
             if(res.status === 200){
+                console.log(props)
                 alert("Store successfully updated");
-		        props.history.push("/stores");
+                
+		        navigate("/stores");
             }else Promise.reject();
         })
-        .catch((err) => alert("Something went wrong"));
+        .catch((err) => console.log(err));
     };
 
     useEffect(() => {

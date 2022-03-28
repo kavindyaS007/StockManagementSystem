@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ListElement = (props) => {
-    const {id, itemName} = props.obj;
+    const {id, item, store, date, count} = props.obj;
 
-    const deleteItem = () => {
+    const deleteStock = () => {
         axios.delete(
-            "http://localhost:8080/items/" + id
+            "http://localhost:8080/stocks/" + id
         ).then((res) => {
             if(res.status === 200) {
-                alert("Item successfully deleted");
+                alert("Stock successfully deleted");
                 window.location.reload();
             }
             else
@@ -23,13 +23,13 @@ const ListElement = (props) => {
     return(
         <tr>
 	        <td>{id}</td>
-	        <td>{itemName}</td>
+	        <td>{date}</td>
+            <td>{item.itemName}</td>
+            <td>{store.location}</td>
+            <td>{count}</td>
 	
 	        <td>
-		        <Link className="edit-link" to={"/edit-item/" + id}>
-		            Edit
-		        </Link>
-		        <Button onClick={deleteItem} size="sm" variant="danger">
+		        <Button onClick={deleteStock} size="sm" variant="danger">
 		            Delete
 		        </Button>
 	        </td>

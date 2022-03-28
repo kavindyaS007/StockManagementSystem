@@ -25,6 +25,7 @@ const StoreList = () => {
 
     return(
         <div className="table-wrapper">
+            <h2>Stores</h2>
             <Table striped bordered hover>
 		        <thead>
 		            <tr>

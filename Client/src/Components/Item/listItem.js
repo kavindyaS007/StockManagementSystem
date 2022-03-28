@@ -25,6 +25,7 @@ const ItemList = () => {
 
     return(
         <div className="table-wrapper">
+            <h2>Items</h2>
             <Table striped bordered hover>
 		        <thead>
 		            <tr>

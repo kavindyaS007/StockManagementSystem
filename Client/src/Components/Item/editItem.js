@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ItemForm from "./itemForm";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const EditItem = (props) => {
+
+    let navigate = useNavigate ();
     const [formValues, setFormValues] = useState({
         id: "",
         itemName: ""
@@ -14,9 +16,10 @@ const EditItem = (props) => {
         axios.put("http://localhost:8080/items/edit/" + id,
             itemObject)
         .then((res) => {
+            console.log(res)
             if(res.status === 200){
                 alert("Item successfully updated");
-		        props.history.push("/items");
+		        navigate("/items");
             }else Promise.reject();
         })
         .catch((err) => alert("Something went wrong"));
@@ -24,7 +27,7 @@ const EditItem = (props) => {
 
     useEffect(() => {
         
-        console.log(id);
+        //console.log(id);
         axios.get("http://localhost:8080/items/" + id
         )
         .then((res) => {

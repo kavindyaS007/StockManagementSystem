@@ -10,10 +10,16 @@ import Home from "./Components/Home"
 import AddItem from "./Components/Item/addItem"
 import ItemList from "./Components/Item/listItem"
 import EditItem from "./Components/Item/editItem"
+
 import AddStore from "./Components/Store/addStore"
 import StoreList from "./Components/Store/listStore"
 import EditStore from "./Components/Store/editStore"
 
+import AddStock from "./Components/Stock/addStock"
+import StockList from "./Components/Stock/listStock"
+import EditStock from "./Components/Stock/editStock"
+
+import Report from "./Components/report"
 
 const App = () => {
   return (
@@ -27,22 +33,25 @@ const App = () => {
               </Navbar.Brand>
               <Nav className="justify-content-end">
                 <Nav>
-                  <Link to={"/items"} className="nav-link">Items</Link>
+                  <Link to={"/items"} className="nav-link">Items |</Link>
                 </Nav>
                 <Nav>
-                  <Link to={"/add-items"} className="nav-link">Add Item</Link>
+                  <Link to={"/add-items"} className="nav-link">Add Item |</Link>
                 </Nav>
                 <Nav>
-                  <Link to={"/stores"} className="nav-link">Stores</Link>
+                  <Link to={"/stores"} className="nav-link">Stores |</Link>
                 </Nav>
                 <Nav>
-                  <Link to={"/add-stores"} className="nav-link">Add Store</Link>
+                  <Link to={"/add-stores"} className="nav-link">Add Store |</Link>
                 </Nav>
                 <Nav>
-                  <Link to={"/stocks"} className="nav-link">Stocks</Link>
+                  <Link to={"/stocks"} className="nav-link">Stocks |</Link>
                 </Nav>
                 <Nav>
-                  <Link to={"/add-stocks"} className="nav-link">Update Stock</Link>
+                  <Link to={"/add-stocks"} className="nav-link">Add/Remove Stock |</Link>
+                </Nav>
+                <Nav>
+                  <Link to={"/report"} className="nav-link">Report</Link>
                 </Nav>
               </Nav>
             </Container>
@@ -63,8 +72,11 @@ const App = () => {
                   <Route path="/add-stores" element={<AddStore/>}/>
                   <Route path="/edit-store/:id" element={<EditStore/>} />
                   
-                  <Route path="/stocks" element={<Home/>}/>
-                  <Route path="/add-stocks" element={<Home/>}/>
+                  <Route path="/stocks" element={<StockList/>}/>
+                  <Route path="/add-stocks" element={<AddStock/>}/>
+                  <Route path="/edit-stock/:id" element={<EditStock/>} />
+
+                  <Route path="/report" element={<Report/>} />
                 </Routes>
               </div>
             </Col>
