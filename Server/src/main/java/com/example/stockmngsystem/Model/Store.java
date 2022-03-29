@@ -1,10 +1,10 @@
 package com.example.stockmngsystem.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 public class Store {
 
@@ -12,6 +12,10 @@ public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "store" , cascade = CascadeType.ALL)
+    private List<Stock> stocks;
 
     @Column(name="store_location", length=50, nullable=false)
     private String location;
@@ -41,5 +45,21 @@ public class Store {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public List<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+    }
+
+    public int getCurrentStorageUse(){
+        int sum = 0;
+        for(Stock st : this.stocks){
+            sum += st.getCount();
+        }
+        return sum;
     }
 }
