@@ -12,6 +12,7 @@ in your terminal,
 **front-end**
 Run these commands on your terminal;
 >> cd Client
+
 >> npm start
 
 **back-end**
