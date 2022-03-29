@@ -9,8 +9,10 @@ const AddStore = () => {
         axios.post(
             'http://localhost:8080/stores/add', storeObject
         ).then(res => {
-            if(res.status === 200)
+            if(res.status === 200){
                 alert('Store added successfully')
+                window.location.reload()
+            }
             else
                 Promise.reject()
         })
@@ -21,7 +23,7 @@ const AddStore = () => {
         <StoreForm initialValues={formValues}
             onSubmit={onSubmit}
             enableReinitialize>
-                Add Item
+                Add Store
         </StoreForm>
     )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from 'axios'
 import StockForm from "./stockForm"
 
+
 const AddStock = () => {
 
     const [formValues, setFormValues] = useState({item: '', store: '', date: '', count: ''})
@@ -16,8 +17,10 @@ const AddStock = () => {
         axios.post(
             'http://localhost:8080/stocks/add', stockObject
         ).then(res => {
-            if(res.status === 200)
+            if(res.status === 200){
                 alert('Stock added successfully')
+                window.location.reload()
+            }
             else
                 Promise.reject()
         })
